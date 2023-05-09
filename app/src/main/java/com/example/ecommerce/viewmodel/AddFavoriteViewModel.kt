@@ -9,9 +9,7 @@ import com.example.ecommerce.utils.singleHelper
 
 
 // Lớp AddFavoriteViewModel là một ViewModel trong kiến trúc MVVM được sử dụng để xử lý dữ liệu và logic liên quan đến hành động thêm sản phẩm vào danh sách yêu thích của người dùng.
-class AddFavoriteViewModel(
-    private val addFavoriteRepository: AddFavoriteRepository,
-) : BaseViewModel() {
+class AddFavoriteViewModel(private val addFavoriteRepository: AddFavoriteRepository, ) : BaseViewModel() {
     // đối tượng MutableLiveData để truyền dữ liệu giữa lớp ViewModel và View (Activity hoặc Fragment)
     val addFavoriteLiveData = MutableLiveData<AddFavorite>()
 
