@@ -9,5 +9,4 @@ class RemoteCategoryDetailDataSource(private val apiService: ApiService) :
     CategoryDetailDataSource {
     override fun categoryDetail(id: Int): Single<List<Software>> = apiService.categoryDetail(id)
 
-
 }

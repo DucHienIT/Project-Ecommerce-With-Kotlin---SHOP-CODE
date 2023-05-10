@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.category_detail_item.view.*
 import kotlinx.android.synthetic.main.category_detail_item.view.price
 
 class AdapterCategoryDetail(
-    private val Software: List<Software>,
+    private val software: List<Software>,
     private val imageLoading: ImageLoading
 ) :
     RecyclerView.Adapter<AdapterCategoryDetail.ListFavoriteViewHolder>() {
@@ -35,23 +35,24 @@ class AdapterCategoryDetail(
         holder: ListFavoriteViewHolder,
         position: Int
     ) {
-        val Software = Software[position]
-        holder.bind(Software, imageLoading)
+        val software = software[position]
+        holder.bind(software, imageLoading)
     }
 
     override fun getItemCount(): Int {
-        return Software.size
+        return software.size
     }
 
     class ListFavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(Software: Software, imageLoading: ImageLoading) {
+        fun bind(software: Software, imageLoading: ImageLoading) {
             itemView.apply {
-                //imageLoading.load(image, Software.image_url)
-                text.text = Software.name
-                price.text = Software.price
+
+                imageLoading.load(image, software.image_url)
+                text.text = software.name
+                price.text = software.price
                 setOnClickListener {
                     findNavController().navigate(
-                    CategoryListFragmentDirections.actionCategoryListFragmentToDetailSoftwareFragment3(Software)
+                    CategoryListFragmentDirections.actionCategoryListFragmentToDetailSoftwareFragment3(software)
                     )
                 }
 

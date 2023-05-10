@@ -74,8 +74,8 @@ interface ApiService {
     ): Single<List<FavoriteList>>
 
     // Lấy danh sách sản phẩm thuộc Category
-    @GET("/divine/software/category/{category_id}/")
-    fun categoryDetail(@Path("category_id") id: Int): Single<List<Software>>
+    @GET("/divine/software/category/{id}/")
+    fun categoryDetail(@Path("id") id: Int): Single<List<Software>>
 
     // Thêm sản phẩm vào giỏ hàng
     @POST("cart/add/{id}/{count}/{price}/")

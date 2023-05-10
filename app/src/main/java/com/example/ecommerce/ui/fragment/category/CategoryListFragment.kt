@@ -46,6 +46,9 @@ class CategoryListFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        println("Page Software")
+        println("Id category: , $id!")
+
         // Đặt tiêu đề cho Toolbar
         text_toolbar.text = getString(R.string.category_list)
 

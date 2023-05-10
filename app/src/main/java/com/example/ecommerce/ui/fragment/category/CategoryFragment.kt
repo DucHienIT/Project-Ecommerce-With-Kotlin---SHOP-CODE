@@ -47,6 +47,8 @@ class CategoryFragment : Fragment() {
         image_back.visibility = View.GONE
         text_toolbar.text = getString(R.string.category)
 
+        println("Page List Category")
+
         // Quan sát sự thay đổi của trạng thái của progressbar và hiển thị lên giao diện.
         homeViewModel.progressbarLiveData.observe(viewLifecycleOwner) { visible ->
             progress(visible)

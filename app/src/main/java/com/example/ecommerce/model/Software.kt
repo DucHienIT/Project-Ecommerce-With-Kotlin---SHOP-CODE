@@ -11,6 +11,6 @@ data class Software(
     val image_url: String,
     val price: String,
     val quantity: Int,
-    val category: Int,
+    val category: Category,
     val has_key: Boolean
 ): Parcelable
