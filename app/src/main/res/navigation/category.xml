@@ -23,16 +23,16 @@
             android:name="id"
             app:argType="com.example.ecommerce.model.Category" />
         <action
-            android:id="@+id/action_categoryListFragment_to_detailProductFragment3"
-            app:destination="@id/detailProductFragment3" />
+            android:id="@+id/action_categoryListFragment_to_detailSoftwareFragment3"
+            app:destination="@id/detailSoftwareFragment3" />
     </fragment>
     <fragment
-        android:id="@+id/detailProductFragment3"
-        android:name="com.example.ecommerce.ui.fragment.detail.DetailProductFragment"
-        android:label="fragment_detail_product"
-        tools:layout="@layout/fragment_detail_product" >
+        android:id="@+id/detailSoftwareFragment3"
+        android:name="com.example.ecommerce.ui.fragment.detail.DetailSoftwareFragment"
+        android:label="fragment_detail_Software"
+        tools:layout="@layout/fragment_detail_Software" >
         <argument
-            android:name="product"
-            app:argType="com.example.ecommerce.model.Product" />
+            android:name="software"
+            app:argType="com.example.ecommerce.model.Software" />
     </fragment>
 </navigation>

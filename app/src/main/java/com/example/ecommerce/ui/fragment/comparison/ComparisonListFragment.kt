@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerce.R
-import com.example.ecommerce.model.Product
-import com.example.ecommerce.ui.adapter.ComparisonProductListAdapter
+import com.example.ecommerce.model.Software
+import com.example.ecommerce.ui.adapter.ComparisonSoftwareListAdapter
 import com.example.ecommerce.utils.Fragment
 import com.example.ecommerce.viewmodel.ComparisonListViewModel
 import kotlinx.android.synthetic.main.fragment_comparison_list.*
@@ -33,15 +33,15 @@ class ComparisonListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         args = arguments?.let { ComparisonListFragmentArgs.fromBundle(it) }
-        id = args?.product?.category
-        "Comparison Product List".also { text_toolbar.text = it }
+        id = args?.software?.category
+        "Comparison Software List".also { text_toolbar.text = it }
         image_back.setOnClickListener {
             it.findNavController().popBackStack()
         }
-        comparisonListViewModel.comparisonListProductLiveData.observe(viewLifecycleOwner) {
-            val comparisonProductListAdapter: ComparisonProductListAdapter by inject()
-            comparisonProductListAdapter.product = it as ArrayList<Product>
-            recyclerview_comparison.adapter = comparisonProductListAdapter
+        comparisonListViewModel.comparisonListSoftwareLiveData.observe(viewLifecycleOwner) {
+            val comparisonSoftwareListAdapter: ComparisonSoftwareListAdapter by inject()
+            comparisonSoftwareListAdapter.software = it as ArrayList<Software>
+            recyclerview_comparison.adapter = comparisonSoftwareListAdapter
         }
         comparisonListViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
             progress(it)

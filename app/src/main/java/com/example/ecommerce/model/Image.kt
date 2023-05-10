@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Image(
     val id: Int,
     val image: String,
-    val product: Int,
+    val Software: Int,
     val title: String
 ):Parcelable

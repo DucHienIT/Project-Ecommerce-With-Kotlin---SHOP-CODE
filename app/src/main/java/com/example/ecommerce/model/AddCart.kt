@@ -8,6 +8,6 @@ data class AddCart(
     val is_add: Boolean,
     val pay: Boolean,
     val price: Int,
-    val product: Product,
+    val Software: Software,
     val update: Boolean,
 )

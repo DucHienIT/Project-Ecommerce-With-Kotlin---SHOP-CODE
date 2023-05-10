@@ -1,6 +1,6 @@
 package com.example.ecommerce.model
 
-data class ProductDetail(
+data class SoftwareDetail(
     val Images: List<Image>,
-    val Product: List<Product>
+    val Software: List<Software>
 )

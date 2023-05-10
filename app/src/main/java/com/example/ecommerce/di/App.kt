@@ -38,14 +38,14 @@ class App : Application() {
                 )
             }
             factory { (category: List<Category>) -> CategoryAdapter(category, get()) }
-            factory { (product: List<Product>) -> AdapterCategoryDetail(product, get()) }
+            factory { (software: List<Software>) -> AdapterCategoryDetail(software, get()) }
             factory { (category: List<Category>) -> CategoryListAdapter(category, get()) }
-            factory { (product: List<Product>) -> AmazingAdapter(product, get()) }
-            factory { (property: List<Property>) -> PropertyProductAdapter(property) }
-            factory { (rating: List<Rating>) -> AdapterRatingProduct(rating) }
+            factory { (software: List<Software>) -> AmazingAdapter(software, get()) }
+            factory { (property: List<Property>) -> PropertySoftwareAdapter(property) }
+            factory { (rating: List<Rating>) -> AdapterRatingSoftware(rating) }
             factory<AmazingRepository> { AmazingRepositoryImpl(RemoteAmazingDataSource(get())) }
-            factory<DetailProductRepository> {
-                DetailProductRepositorylmpl(
+            factory<DetailSoftwareRepository> {
+                DetailSoftwareRepositorylmpl(
                     RemoteDetailDataSource(
                         get()
                     )
@@ -58,22 +58,22 @@ class App : Application() {
                     get()
                 )
             }
-            factory<PropertyProductRepository> {
-                PropertyProductImpl(
-                    RemotePropertyProductDataSource(
+            factory<PropertySoftwareRepository> {
+                PropertySoftwareImpl(
+                    RemotePropertySoftwareDataSource(
                         get()
                     )
                 )
             }
             factory<FavoriteListRepository> { FavoriteListImpl(RemoteFavoriteListDataSource(get())) }
-            factory<RatingProductRepository> {
-                RatingProductRepositoryImpl(
-                    RemoteRatingProductDataSource(get())
+            factory<RatingSoftwareRepository> {
+                RatingSoftwareRepositoryImpl(
+                    RemoteRatingSoftwareDataSource(get())
                 )
             }
-            factory<PriceProductRepository> {
-                PriceProductRepositorylmpl(
-                    RemotePriceProductDataSource(get())
+            factory<PriceSoftwareRepository> {
+                PriceSoftwareRepositorylmpl(
+                    RemotePriceSoftwareDataSource(get())
                 )
             }
             factory<ComparisonListRepository> {
@@ -81,7 +81,7 @@ class App : Application() {
                     RemoteComparisonListDataSource(get())
                 )
             }
-            factory { ComparisonProductListAdapter(get()) }
+            factory { ComparisonSoftwareListAdapter(get()) }
             factory { (property: List<Property>) -> ComparisonAdapter(property) }
             factory<LoginRepository> {
                 LoginRepositorylmpl(
@@ -106,13 +106,13 @@ class App : Application() {
                 HomeViewModel(get(), get(), get())
             }
             viewModel { (id: Int) ->
-                DetailProductViewModel(get(), get(), id)
+                DetailSoftwareViewModel(get(), get(), id)
             }
             viewModel { (id: Int) ->
-                PropertyProductViewModel(get(), id)
+                PropertySoftwareViewModel(get(), id)
             }
             viewModel { (id: Int) ->
-                PriceProductViewModel(get(), id)
+                PriceSoftwareViewModel(get(), id)
             }
 
             viewModel { (id: Int) ->

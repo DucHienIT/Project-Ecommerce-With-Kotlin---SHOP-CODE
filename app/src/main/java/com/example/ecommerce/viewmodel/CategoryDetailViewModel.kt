@@ -1,13 +1,8 @@
 package com.example.ecommerce.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.ecommerce.model.Category
-import com.example.ecommerce.model.Product
-import com.example.ecommerce.model.ProductDetail
-import com.example.ecommerce.model.Rating
+import com.example.ecommerce.model.Software
 import com.example.ecommerce.repository.CategoryDetailRepository
-import com.example.ecommerce.repository.DetailProductRepository
-import com.example.ecommerce.repository.RatingProductRepository
 import com.example.ecommerce.utils.BaseViewModel
 import com.example.ecommerce.utils.Observer
 import com.example.ecommerce.utils.singleHelper
@@ -17,7 +12,7 @@ import com.example.ecommerce.utils.singleHelper
  * @param categoryDetailRepository Đối tượng Repository để truy xuất dữ liệu.
  * @param id ID của danh mục sản phẩm được chọn để hiển thị chi tiết.
  * @property categoryDetailLiveData LiveData chứa danh sách các sản phẩm trong danh mục được chọn.
- * @property detailProductIdLiveData LiveData chứa ID của danh mục sản phẩm được chọn để hiển thị chi tiết.
+ * @property detailSoftwareIdLiveData LiveData chứa ID của danh mục sản phẩm được chọn để hiển thị chi tiết.
  */
 class CategoryDetailViewModel(
     categoryDetailRepository: CategoryDetailRepository,
@@ -25,20 +20,20 @@ class CategoryDetailViewModel(
 ) :
     BaseViewModel() {
     // LiveData chứa danh sách các sản phẩm trong danh mục được chọn.
-    val  categoryDetailLiveData = MutableLiveData<List<Product>>()
+    val  categoryDetailLiveData = MutableLiveData<List<Software>>()
 
     // LiveData chứa ID của danh mục sản phẩm được chọn để hiển thị chi tiết.
-    private val detailProductIdLiveData = MutableLiveData<Int>()
+    private val detailSoftwareIdLiveData = MutableLiveData<Int>()
 
     init {
         // Hiển thị tiến trình đang tải dữ liệu.
         progressbarLiveData.value = true
 
         // Thiết lập ID danh mục sản phẩm để truy xuất dữ liệu.
-        detailProductIdLiveData.value = id
+        detailSoftwareIdLiveData.value = id
 
         // Gọi phương thức lấy danh sách sản phẩm từ Repository.
-        categoryDetailRepository.categoryDetail(detailProductIdLiveData.value!!)
+        categoryDetailRepository.categoryDetail(detailSoftwareIdLiveData.value!!)
             .singleHelper()
 
             // Đóng bộ lọc xử lý tiến trình đang tải dữ liệu.
@@ -47,8 +42,8 @@ class CategoryDetailViewModel(
             }
 
             // Thực hiện việc gán dữ liệu sản phẩm vào LiveData khi đã lấy được từ Repository.
-            .subscribe(object : Observer<List<Product>>(compositeDisposable) {
-                override fun onSuccess(t: List<Product>) {
+            .subscribe(object : Observer<List<Software>>(compositeDisposable) {
+                override fun onSuccess(t: List<Software>) {
                     categoryDetailLiveData.value = t
                 }
             })

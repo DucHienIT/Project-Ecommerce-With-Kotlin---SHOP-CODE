@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.ecommerce.R
 import com.example.ecommerce.utils.Fragment
-import com.example.ecommerce.viewmodel.PriceProductViewModel
+import com.example.ecommerce.viewmodel.PriceSoftwareViewModel
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -26,7 +26,7 @@ import java.util.ArrayList
 val dates = mutableListOf<String>()
 
 class ChartFragment : Fragment() {
-    private val priceProductViewModel: PriceProductViewModel by viewModel { parametersOf(id) }
+    private val priceSoftwareViewModel: PriceSoftwareViewModel by viewModel { parametersOf(id) }
     private var args: ChartFragmentArgs? = null
 
     var id: Int? = null
@@ -41,13 +41,13 @@ class ChartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         args = arguments?.let { ChartFragmentArgs.fromBundle(it) }
-        id = args?.product?.id
+        id = args?.software?.id
 
         "Price Chart".also { text_toolbar.text = it }
         image_back.setOnClickListener {
             it.findNavController().popBackStack()
         }
-        priceProductViewModel.priceProductLiveData.observe(viewLifecycleOwner) {
+        priceSoftwareViewModel.priceSoftwareLiveData.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 val values: MutableList<Entry> = ArrayList()
                 for (i in it.indices) {
@@ -80,7 +80,7 @@ class ChartFragment : Fragment() {
 
 
         }
-        priceProductViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
+        priceSoftwareViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
             progress(it)
         }
     }

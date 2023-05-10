@@ -19,9 +19,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
+/**
+ * Fragment hiển thị danh sách các danh mục sản phẩm.
+ */
 class CategoryFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,17 +37,23 @@ class CategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.categoryLiveDate.observe(viewLifecycleOwner) {
-            val categoryAdapter: CategoryListAdapter by inject { parametersOf(it) }
+        // Quan sát sự thay đổi của danh sách các danh mục sản phẩm và hiển thị lên giao diện.
+        homeViewModel.categoryLiveDate.observe(viewLifecycleOwner) { categories ->
+            val categoryAdapter: CategoryListAdapter by inject { parametersOf(categories) }
             category.adapter = categoryAdapter
         }
+
+        // Thiết lập tiêu đề và ẩn nút back trên thanh toolbar.
         image_back.visibility = View.GONE
         text_toolbar.text = getString(R.string.category)
-        homeViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
-            progress(it)
+
+        // Quan sát sự thay đổi của trạng thái của progressbar và hiển thị lên giao diện.
+        homeViewModel.progressbarLiveData.observe(viewLifecycleOwner) { visible ->
+            progress(visible)
         }
-        category.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        // Thiết lập layout cho danh sách các danh mục sản phẩm.
+        category.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
 }

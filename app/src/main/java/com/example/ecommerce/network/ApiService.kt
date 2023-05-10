@@ -16,32 +16,32 @@ interface ApiService {
     fun home(): Single<List<Slider>>
 
     // Lấy danh sách Category
-    @GET("home/category")
+    @GET("divine/categories")
     fun category(): Single<List<Category>>
 
-    // Lấy danh sách Product
-    @GET("home/product")
-    fun product(): Single<List<Product>>
+    // Lấy danh sách Software
+    @GET("/divine/softwares/")
+    fun Software(): Single<List<Software>>
 
     // Lấy chi tiết sản phẩm
-    @GET("home/product/{id}/")
-    fun detailProduct(@Path("id") id: Int): Single<ProductDetail>
+    @GET("/divine/softwares/{id}/")
+    fun detailSoftware(@Path("id") id: Int): Single<SoftwareDetail>
 
     // Lấy danh sách Property của sản phẩm
     @GET("home/property/{id}/")
-    fun propertyProduct(@Path("id") id: Int): Single<List<Property>>
+    fun propertySoftware(@Path("id") id: Int): Single<List<Property>>
 
     // Lấy danh sách Rating của sản phẩm
     @GET("home/rating/{id}/")
-    fun ratingProduct(@Path("id") id: Int): Single<List<Rating>>
+    fun ratingSoftware(@Path("id") id: Int): Single<List<Rating>>
 
     // Lấy danh sách Price của sản phẩm
     @GET("home/price/")
-    fun priceProduct(@Query("id") id: Int): Single<List<Price>>
+    fun priceSoftware(@Query("id") id: Int): Single<List<Price>>
 
     // Lấy danh sách sản phẩm so sánh
     @GET("home/comparison/{id}/")
-    fun comparisonProduct(@Path("id") id: Int): Single<List<Product>>
+    fun comparisonSoftware(@Path("id") id: Int): Single<List<Software>>
 
     // Đăng nhập
     @FormUrlEncoded
@@ -74,8 +74,8 @@ interface ApiService {
     ): Single<List<FavoriteList>>
 
     // Lấy danh sách sản phẩm thuộc Category
-    @GET("home/categorydetail/{id}/")
-    fun categoryDetail(@Path("id") id: Int): Single<List<Product>>
+    @GET("/divine/software/category/{category_id}/")
+    fun categoryDetail(@Path("category_id") id: Int): Single<List<Software>>
 
     // Thêm sản phẩm vào giỏ hàng
     @POST("cart/add/{id}/{count}/{price}/")

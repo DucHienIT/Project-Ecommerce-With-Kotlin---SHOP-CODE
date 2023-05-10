@@ -48,13 +48,13 @@ class AdapterListFavorite(
                 /*
                 you must replace your ip address
                  */
-                imageLoading.load(imageView, "http://192.168.8.157:8000${favoriteList.product.image}")
-                Log.i("TAG", "http://192.168.8.157:8000${favoriteList.product.image}")
-                text_title.text = favoriteList.product.title
+                //imageLoading.load(imageView, "http://192.168.8.157:8000${favoriteList.Software.image_url}")
+                //Log.i("TAG", "http://192.168.8.157:8000${favoriteList.Software.image_url}")
+                text_title.text = favoriteList.software.name
                 setOnClickListener {
                     findNavController().navigate(
-                        FavoriteFragmentDirections.actionFavoriteFragmentToDetailProductFragment2(
-                            favoriteList.product
+                        FavoriteFragmentDirections.actionFavoriteFragmentToDetailSoftwareFragment2(
+                            favoriteList.software
                         )
                     )
                 }

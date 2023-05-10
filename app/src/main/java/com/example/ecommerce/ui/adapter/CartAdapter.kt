@@ -72,10 +72,8 @@ class CartAdapter(
             imageLoading: ImageLoading
         ) {
             itemView.apply {
-                imageLoading.load(image, "http://192.168.1.37${cart.product.image}")
-                title.text = cart.product.title
-                warranty_text.text = cart.product.warranty
-                color_text.text = cart.product.color
+                //imageLoading.load(image, "http://192.168.1.37${cart.Software.image_url}")
+                title.text = cart.Software.name
                 total.text = cart.price.toString()
             }
         }

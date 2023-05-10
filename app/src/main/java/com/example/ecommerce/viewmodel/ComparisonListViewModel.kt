@@ -1,7 +1,7 @@
 package com.example.ecommerce.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.ecommerce.model.Product
+import com.example.ecommerce.model.Software
 import com.example.ecommerce.repository.ComparisonListRepository
 import com.example.ecommerce.utils.BaseViewModel
 import com.example.ecommerce.utils.Observer
@@ -11,24 +11,24 @@ class ComparisonListViewModel(
     comparisonListRepository: ComparisonListRepository,
     val id: Int
 ) : BaseViewModel() {
-    val comparisonListProductLiveData = MutableLiveData<List<Product>>()
-    private val comparisonListProductIdLiveData = MutableLiveData<Int>()
+    val comparisonListSoftwareLiveData = MutableLiveData<List<Software>>()
+    private val comparisonListSoftwareIdLiveData = MutableLiveData<Int>()
 
     /**
      * Lấy thông tin các sản phẩm trong danh sách so sánh với id được truyền vào
-     * và gán vào [comparisonListProductLiveData]
+     * và gán vào [comparisonListSoftwareLiveData]
      */
     init {
         progressbarLiveData.value = true
-        comparisonListProductIdLiveData.value = id
-        comparisonListRepository.comparisonProduct(comparisonListProductIdLiveData.value!!)
+        comparisonListSoftwareIdLiveData.value = id
+        comparisonListRepository.comparisonSoftware(comparisonListSoftwareIdLiveData.value!!)
             .singleHelper()
             .doFinally {
                 progressbarLiveData.value = false
             }
-            .subscribe(object : Observer<List<Product>>(compositeDisposable) {
-                override fun onSuccess(t: List<Product>) {
-                    comparisonListProductLiveData.value = t
+            .subscribe(object : Observer<List<Software>>(compositeDisposable) {
+                override fun onSuccess(t: List<Software>) {
+                    comparisonListSoftwareLiveData.value = t
                 }
             })
     }

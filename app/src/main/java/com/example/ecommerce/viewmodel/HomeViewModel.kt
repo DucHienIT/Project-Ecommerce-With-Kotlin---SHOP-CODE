@@ -2,8 +2,8 @@ package com.example.ecommerce.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.ecommerce.model.Category
-import com.example.ecommerce.model.Product
 import com.example.ecommerce.model.Slider
+import com.example.ecommerce.model.Software
 import com.example.ecommerce.repository.AmazingRepository
 import com.example.ecommerce.repository.CategoryRepository
 import com.example.ecommerce.repository.SliderRepository
@@ -24,7 +24,7 @@ class HomeViewModel(
     val categoryLiveDate = MutableLiveData<List<Category>?>()
 
     // LiveData để lắng nghe danh sách sản phẩm ấn tượng được trả về từ API
-    val amazingLiveDate = MutableLiveData<List<Product>?>()
+    val amazingLiveDate = MutableLiveData<List<Software>?>()
 
     init {
         progressbarLiveData.value = true // Hiển thị ProgressBar
@@ -49,9 +49,9 @@ class HomeViewModel(
             .doFinally {
                 progressbarLiveData.value = false // Ẩn ProgressBar khi đã lấy được danh sách sản phẩm ấn tượng
             }
-            .subscribe(object : Observer<List<Product>>(compositeDisposable) {
+            .subscribe(object : Observer<List<Software>>(compositeDisposable) {
                 // Khi lấy được danh sách sản phẩm ấn tượng, cập nhật giá trị cho amazingLiveDate
-                override fun onSuccess(t: List<Product>?) {
+                override fun onSuccess(t: List<Software>?) {
                     amazingLiveDate.value = t
                 }
             })

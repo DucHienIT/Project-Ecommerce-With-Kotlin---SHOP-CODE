@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerce.R
-import com.example.ecommerce.model.Product
+import com.example.ecommerce.model.Software
 import com.example.ecommerce.ui.fragment.category.CategoryListFragmentDirections
 import com.example.ecommerce.ui.fragment.home.ImageLoading
-import com.example.ecommerce.utils.ChangeNumber
 import kotlinx.android.synthetic.main.category_detail_item.view.*
 import kotlinx.android.synthetic.main.category_detail_item.view.price
 
 class AdapterCategoryDetail(
-    private val product: List<Product>,
+    private val Software: List<Software>,
     private val imageLoading: ImageLoading
 ) :
     RecyclerView.Adapter<AdapterCategoryDetail.ListFavoriteViewHolder>() {
@@ -36,23 +35,23 @@ class AdapterCategoryDetail(
         holder: ListFavoriteViewHolder,
         position: Int
     ) {
-        val product = product[position]
-        holder.bind(product, imageLoading)
+        val Software = Software[position]
+        holder.bind(Software, imageLoading)
     }
 
     override fun getItemCount(): Int {
-        return product.size
+        return Software.size
     }
 
     class ListFavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(product: Product, imageLoading: ImageLoading) {
+        fun bind(Software: Software, imageLoading: ImageLoading) {
             itemView.apply {
-                imageLoading.load(image, product.image)
-                text.text = product.title
-                (" $" + ChangeNumber().format(product.price)).also { price.text = it }
+                //imageLoading.load(image, Software.image_url)
+                text.text = Software.name
+                price.text = Software.price
                 setOnClickListener {
                     findNavController().navigate(
-                    CategoryListFragmentDirections.actionCategoryListFragmentToDetailProductFragment3(product)
+                    CategoryListFragmentDirections.actionCategoryListFragmentToDetailSoftwareFragment3(Software)
                     )
                 }
 

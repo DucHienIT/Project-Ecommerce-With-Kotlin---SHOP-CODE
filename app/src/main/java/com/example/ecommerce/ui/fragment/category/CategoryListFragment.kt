@@ -18,37 +18,52 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
+// Định nghĩa Fragment hiển thị danh sách sản phẩm theo danh mục
 class CategoryListFragment : Fragment() {
-    private val categoryDetailProductViewModel: CategoryDetailViewModel by viewModel { parametersOf(id) }
+    // Khởi tạo ViewModel để xử lý logic và truy vấn dữ liệu cho Fragment
+    private val categoryDetailSoftwareViewModel: CategoryDetailViewModel by viewModel { parametersOf(id) }
     var args: CategoryListFragmentArgs? = null
     var id: Int? = null
+
+    // Khởi tạo View
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Gán layout cho Fragment
         return inflater.inflate(R.layout.fragment_category_list, container, false)
     }
 
+    // Khởi tạo và xử lý sự kiện trên View
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Lấy dữ liệu truyền vào qua Navigation
         args = arguments?.let { CategoryListFragmentArgs.fromBundle(it) }
         id = args?.id?.id
+
+        // Xử lý sự kiện khi người dùng click vào nút quay lại
         image_back.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        // Đặt tiêu đề cho Toolbar
         text_toolbar.text = getString(R.string.category_list)
-        categoryDetailProductViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
+
+        // Hiển thị ProgressBar khi đang tải dữ liệu
+        categoryDetailSoftwareViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
             progress(it)
         }
-        categoryDetailProductViewModel.categoryDetailLiveData.observe(viewLifecycleOwner) {
+
+        // Hiển thị danh sách sản phẩm trong danh mục
+        categoryDetailSoftwareViewModel.categoryDetailLiveData.observe(viewLifecycleOwner) {
+            // Khởi tạo Adapter hiển thị danh sách sản phẩm
             val adapterCategoryDetail: AdapterCategoryDetail by inject { parametersOf(it) }
+            // Đặt Adapter cho RecyclerView
             category_list.adapter = adapterCategoryDetail
         }
+        // Đặt kiểu hiển thị danh sách là dạng dọc
         category_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
     }
-
-
 }

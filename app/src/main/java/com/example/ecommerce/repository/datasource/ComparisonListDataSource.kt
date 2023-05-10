@@ -1,8 +1,7 @@
 package com.example.ecommerce.repository.datasource
-
-import com.example.ecommerce.model.Product
+import com.example.ecommerce.model.Software
 import io.reactivex.rxjava3.core.Single
 
 interface ComparisonListDataSource {
-    fun comparisonProduct(id:Int): Single<List<Product>>
+    fun comparisonSoftware(id:Int): Single<List<Software>>
 }

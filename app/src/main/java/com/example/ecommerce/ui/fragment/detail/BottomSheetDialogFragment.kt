@@ -29,7 +29,7 @@ class BottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         args = arguments?.let { BottomSheetDialogFragmentArgs.fromBundle(it) }
-        title = args?.product?.title
+        title = args?.software?.name
         text_share.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
@@ -39,19 +39,19 @@ class BottomSheetDialogFragment : BottomSheetDialogFragment() {
                 )
 
             }
-            startActivity(Intent.createChooser(intent, "Product Name"))
+            startActivity(Intent.createChooser(intent, "Software Name"))
         }
         text_chart.setOnClickListener {
             findNavController().navigate(
                 BottomSheetDialogFragmentDirections.actionBottomSheetDialogFragment2ToChartFragment(
-                    args?.product!!
+                    args?.software!!
                 )
             )
         }
         text_comparison.setOnClickListener {
             findNavController().navigate(
                 BottomSheetDialogFragmentDirections.actionBottomSheetDialogFragment2ToComparisonListFragment(
-                    args?.product!!
+                    args?.software!!
                 )
             )
         }

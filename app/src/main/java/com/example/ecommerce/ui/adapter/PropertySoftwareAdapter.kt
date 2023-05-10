@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_property_product_child.view.*
 const val PROPERTY_ITEM = 1
 const val PROPERTY_ITEM_CHILD = 2
 
-class PropertyProductAdapter(private val property: List<Property>) :
+class PropertySoftwareAdapter(private val property: List<Property>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == PROPERTY_ITEM) {

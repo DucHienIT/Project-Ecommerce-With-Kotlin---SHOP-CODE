@@ -1,49 +1,49 @@
 package com.example.ecommerce.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.ecommerce.model.ProductDetail
 import com.example.ecommerce.model.Rating
-import com.example.ecommerce.repository.DetailProductRepository
-import com.example.ecommerce.repository.RatingProductRepository
+import com.example.ecommerce.model.SoftwareDetail
+import com.example.ecommerce.repository.DetailSoftwareRepository
+import com.example.ecommerce.repository.RatingSoftwareRepository
 import com.example.ecommerce.utils.BaseViewModel
 import com.example.ecommerce.utils.Observer
 import com.example.ecommerce.utils.singleHelper
 
 /**
  * ViewModel cho màn hình chi tiết sản phẩm, bao gồm thông tin sản phẩm và các đánh giá của sản phẩm.
- * @param detailProductRepository Repository để lấy thông tin chi tiết sản phẩm.
- * @param ratingProductRepository Repository để lấy danh sách các đánh giá của sản phẩm.
+ * @param detailSoftwareRepository Repository để lấy thông tin chi tiết sản phẩm.
+ * @param ratingSoftwareRepository Repository để lấy danh sách các đánh giá của sản phẩm.
  * @param id Id của sản phẩm.
  */
-class DetailProductViewModel(
-    detailProductRepository: DetailProductRepository,
-    ratingProductRepository: RatingProductRepository,
+class DetailSoftwareViewModel(
+    detailSoftwareRepository: DetailSoftwareRepository,
+    ratingSoftwareRepository: RatingSoftwareRepository,
     val id: Int
 
 ) :
     BaseViewModel() {
     // LiveData chứa thông tin chi tiết sản phẩm.
-    val detailProductLiveData = MutableLiveData<ProductDetail>()
+    val detailSoftwareLiveData = MutableLiveData<SoftwareDetail>()
     // LiveData chứa danh sách đánh giá của sản phẩm.
-    val ratingProductLiveData = MutableLiveData<List<Rating>>()
+    val ratingSoftwareLiveData = MutableLiveData<List<Rating>>()
     // LiveData chứa id của sản phẩm.
-    private val detailProductIdLiveData = MutableLiveData<Int>()
+    private val detailSoftwareIdLiveData = MutableLiveData<Int>()
 
     init {
         // Hiển thị tiến trình tải dữ liệu.
         progressbarLiveData.value = true
         // Thiết lập id sản phẩm.
-        detailProductIdLiveData.value = id
+        detailSoftwareIdLiveData.value = id
         // Lấy thông tin chi tiết sản phẩm từ repository.
-        detailProductRepository.detailProduct(detailProductIdLiveData.value!!)
+        detailSoftwareRepository.detailSoftware(detailSoftwareIdLiveData.value!!)
             .singleHelper()
-            .subscribe(object : Observer<ProductDetail>(compositeDisposable) {
-                override fun onSuccess(t: ProductDetail) {
-                    detailProductLiveData.value = t
+            .subscribe(object : Observer<SoftwareDetail>(compositeDisposable) {
+                override fun onSuccess(t: SoftwareDetail) {
+                    detailSoftwareLiveData.value = t
                 }
             })
         // Lấy danh sách đánh giá của sản phẩm từ repository.
-        ratingProductRepository.ratingProduct(detailProductIdLiveData.value!!)
+        ratingSoftwareRepository.ratingSoftware(detailSoftwareIdLiveData.value!!)
             .singleHelper()
             .doFinally {
                 // Ẩn tiến trình tải dữ liệu.
@@ -51,7 +51,7 @@ class DetailProductViewModel(
             }
             .subscribe(object : Observer<List<Rating>>(compositeDisposable) {
                 override fun onSuccess(t: List<Rating>) {
-                    ratingProductLiveData.value = t
+                    ratingSoftwareLiveData.value = t
                 }
             })
 

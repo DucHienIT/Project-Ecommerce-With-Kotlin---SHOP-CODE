@@ -31,8 +31,8 @@ class CategoryAdapter(val category: List<Category>, private val imageLoading: Im
     class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(category: Category,imageLoading: ImageLoading) {
             itemView.apply {
-                imageLoading.load(image_category, category.image)
-                category_text.text = category.title
+                category_text.text = category.name
+
             }
         }
     }

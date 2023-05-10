@@ -6,17 +6,16 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerce.R
-import com.example.ecommerce.model.Product
-import com.example.ecommerce.ui.fragment.comparison.ComparisonListFragment
+import com.example.ecommerce.model.Software
 import com.example.ecommerce.ui.fragment.comparison.ComparisonListFragmentDirections
 import com.example.ecommerce.ui.fragment.home.ImageLoading
-import com.example.ecommerce.utils.ChangeNumber
 import kotlinx.android.synthetic.main.item_comparison_product_list.view.*
+import kotlinx.android.synthetic.main.item_property_product.view.text_title
 import java.util.ArrayList
 
-class ComparisonProductListAdapter(private val imageLoading: ImageLoading) :
-    RecyclerView.Adapter<ComparisonProductListAdapter.ComparisonProductListViewHolder>() {
-    var product = ArrayList<Product>()
+class ComparisonSoftwareListAdapter(private val imageLoading: ImageLoading) :
+    RecyclerView.Adapter<ComparisonSoftwareListAdapter.ComparisonSoftwareListViewHolder>() {
+    var software = ArrayList<Software>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -25,38 +24,38 @@ class ComparisonProductListAdapter(private val imageLoading: ImageLoading) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ComparisonProductListViewHolder {
+    ): ComparisonSoftwareListViewHolder {
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(
-                    R.layout.item_comparison_product_list,
+                    R.layout.item_property_product,
                     parent,
                     false
                 )
-        return ComparisonProductListViewHolder(view)
+        return ComparisonSoftwareListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ComparisonProductListViewHolder, position: Int) {
-        val product = product[position]
-        holder.bind(product, imageLoading)
+    override fun onBindViewHolder(holder: ComparisonSoftwareListViewHolder, position: Int) {
+        val Software = software[position]
+        holder.bind(Software, imageLoading)
     }
 
-    override fun getItemCount(): Int = product.size
+    override fun getItemCount(): Int = software.size
 
 
-    class ComparisonProductListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(product: Product, imageLoading: ImageLoading) {
+    class ComparisonSoftwareListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(software: Software, imageLoading: ImageLoading) {
             itemView.apply {
                 setOnClickListener {
                     findNavController().navigate(
                         ComparisonListFragmentDirections.actionComparisonListFragmentToComparisonFragment(
-                            product
+                            software
                         )
                     )
                 }
-                imageLoading.load(imageView, product.image)
-                text_title.text = product.title
-                (" $ " + ChangeNumber().format(product.price)).also { text_price.text = it }
+                //imageLoading.load(imageView, Software.image_url)
+                text_title.text = software.name
+                text_price.text = software.price
             }
         }
     }
