@@ -46,7 +46,7 @@ class CategoryListFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        println("Page Software")
+        println("Page List Software")
         println("Id category: , $id!")
 
         // Đặt tiêu đề cho Toolbar

@@ -1,8 +1,10 @@
 package com.example.ecommerce.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.ecommerce.model.Comment
 import com.example.ecommerce.model.Rating
 import com.example.ecommerce.model.SoftwareDetail
+import com.example.ecommerce.repository.CommentSoftwareRepository
 import com.example.ecommerce.repository.DetailSoftwareRepository
 import com.example.ecommerce.repository.RatingSoftwareRepository
 import com.example.ecommerce.utils.BaseViewModel
@@ -18,6 +20,7 @@ import com.example.ecommerce.utils.singleHelper
 class DetailSoftwareViewModel(
     detailSoftwareRepository: DetailSoftwareRepository,
     ratingSoftwareRepository: RatingSoftwareRepository,
+    commentSoftwareRepository: CommentSoftwareRepository,
     val id: Int
 
 ) :
@@ -26,6 +29,8 @@ class DetailSoftwareViewModel(
     val detailSoftwareLiveData = MutableLiveData<SoftwareDetail>()
     // LiveData chứa danh sách đánh giá của sản phẩm.
     val ratingSoftwareLiveData = MutableLiveData<List<Rating>>()
+
+    val commentSoftwareLiveData = MutableLiveData<List<Comment>>()
     // LiveData chứa id của sản phẩm.
     private val detailSoftwareIdLiveData = MutableLiveData<Int>()
 
@@ -52,6 +57,17 @@ class DetailSoftwareViewModel(
             .subscribe(object : Observer<List<Rating>>(compositeDisposable) {
                 override fun onSuccess(t: List<Rating>) {
                     ratingSoftwareLiveData.value = t
+                }
+            })
+        commentSoftwareRepository.commentSoftware(detailSoftwareIdLiveData.value!!)
+            .singleHelper()
+            .doFinally {
+                // Ẩn tiến trình tải dữ liệu.
+                progressbarLiveData.value = false
+            }
+            .subscribe(object : Observer<List<Comment>>(compositeDisposable) {
+                override fun onSuccess(t: List<Comment>) {
+                    commentSoftwareLiveData.value = t
                 }
             })
 

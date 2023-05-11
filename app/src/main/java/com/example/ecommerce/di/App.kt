@@ -11,7 +11,6 @@ import com.example.ecommerce.ui.adapter.*
 import com.example.ecommerce.ui.fragment.home.ImageLoading
 import com.example.ecommerce.viewmodel.*
 import com.facebook.drawee.backends.pipeline.Fresco
-import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -43,6 +42,7 @@ class App : Application() {
             factory { (software: List<Software>) -> AmazingAdapter(software, get()) }
             factory { (property: List<Property>) -> PropertySoftwareAdapter(property) }
             factory { (rating: List<Rating>) -> AdapterRatingSoftware(rating) }
+            factory { (comment: List<Comment>) -> AdapterCommentSoftware(comment) }
             factory<AmazingRepository> { AmazingRepositoryImpl(RemoteAmazingDataSource(get())) }
             factory<DetailSoftwareRepository> {
                 DetailSoftwareRepositorylmpl(
@@ -69,6 +69,11 @@ class App : Application() {
             factory<RatingSoftwareRepository> {
                 RatingSoftwareRepositoryImpl(
                     RemoteRatingSoftwareDataSource(get())
+                )
+            }
+            factory<CommentSoftwareRepository> {
+                CommentSoftwareRepositoryImpl(
+                    RemoteCommentSoftwareDataSource(get())
                 )
             }
             factory<PriceSoftwareRepository> {
@@ -101,12 +106,13 @@ class App : Application() {
                     RemoteCategoryDetailDataSource(get()),
                 )
             }
+
             single<SharedPreferences> { this@App.getSharedPreferences("user_token", MODE_PRIVATE) }
             viewModel {
                 HomeViewModel(get(), get(), get())
             }
             viewModel { (id: Int) ->
-                DetailSoftwareViewModel(get(), get(), id)
+                DetailSoftwareViewModel(get(), get(), get(), id)
             }
             viewModel { (id: Int) ->
                 PropertySoftwareViewModel(get(), id)

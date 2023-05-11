@@ -24,8 +24,11 @@ interface ApiService {
     fun Software(): Single<List<Software>>
 
     // Lấy chi tiết sản phẩm
-    @GET("/divine/softwares/{id}/")
+    @GET("/divine/software/{id}/")
     fun detailSoftware(@Path("id") id: Int): Single<SoftwareDetail>
+
+    @GET("/divine/comments/{id}/")
+    fun commentSoftware(@Path("id") id: Int): Single<List<Comment>>
 
     // Lấy danh sách Property của sản phẩm
     @GET("home/property/{id}/")
