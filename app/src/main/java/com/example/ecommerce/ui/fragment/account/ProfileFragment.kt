@@ -4,33 +4,53 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.ecommerce.R
-import com.example.ecommerce.utils.Fragment
-import com.example.ecommerce.viewmodel.LoginViewModel
+import com.example.ecommerce.model.User
+import com.example.ecommerce.viewmodel.LoadUserViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class ProfileFragment : Fragment() {
 
-    private val loginViewModel:LoginViewModel by viewModel()
-
+    private lateinit var loadUserViewModel: LoadUserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel.checkLogin()
-        favorite_list.setOnClickListener {
-            findNavController().navigate(R.id.favoriteFragment)
-        }
+        loadUserViewModel = ViewModelProvider(this).get(LoadUserViewModel::class.java)
+        //observeUserInformation()
+        setupButtonListeners()
     }
 
+    private fun observeUserInformation() {
+        loadUserViewModel.userInformationData.observe(viewLifecycleOwner, { user ->
+            user?.let {
+                setUserInformation(user)
+            }
+        })
+    }
+
+    private fun setUserInformation(user: User) {
+        edit_username.setText(user.username)
+        edit_email.setText(user.email)
+        edit_first_name.setText(user.first_name)
+        edit_last_name.setText(user.last_name)
+    }
+
+    private fun setupButtonListeners() {
+        btn_update.setOnClickListener {
+            // Perform the update operation here
+        }
+
+        btn_cancel.setOnClickListener {
+            // Handle cancel button click here
+        }
+    }
 }

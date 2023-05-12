@@ -51,6 +51,7 @@ class App : Application() {
                     )
                 )
             }
+            factory<LoadUserRepository> {LoadUserRepositoryImpl(RemoteLoadUserDataSource(get()))}
             factory<AddFavoriteRepository> { AddFavoriteImpl(RemoteAddFavoriteDataSource(get())) }
             factory { (favoriteList: List<FavoriteList>) ->
                 AdapterListFavorite(
@@ -135,7 +136,9 @@ class App : Application() {
             viewModel { (id: Int) ->
                 CategoryDetailViewModel(get(), id)
             }
-
+            viewModel {
+                LoadUserViewModel(get())
+            }
 
         }
         startKoin {

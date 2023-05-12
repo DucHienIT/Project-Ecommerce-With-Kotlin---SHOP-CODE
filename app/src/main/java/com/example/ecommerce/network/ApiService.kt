@@ -19,7 +19,6 @@ interface ApiService {
     @GET("divine/categories")
     fun category(): Single<List<Category>>
 
-    // Lấy danh sách Software
     @GET("/divine/softwares/")
     fun Software(): Single<List<Software>>
 
@@ -85,12 +84,15 @@ interface ApiService {
         @Path("count") count: Int,
         @Path("price") price: Int,
     ): Single<List<AddCart>>
+
+    @GET("/account/dj-rest-auth/user/")
+    fun getUserInfo(): Single<User>
 }
 
 
 fun client(): ApiService {
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://android-api-git-crt-20110233-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/")
+        .baseUrl("http://3.27.16.111/")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
