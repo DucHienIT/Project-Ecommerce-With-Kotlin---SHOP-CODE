@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerce.R
+import com.example.ecommerce.ui.adapter.AdapterCommentSoftware
 import com.example.ecommerce.ui.adapter.AdapterRatingSoftware
 import com.example.ecommerce.ui.adapter.SliderAdapterDetailSoftware
 import com.example.ecommerce.utils.Fragment
@@ -20,6 +22,7 @@ import com.example.ecommerce.viewmodel.DetailSoftwareViewModel
 import com.example.ecommerce.viewmodel.LoginViewModel
 
 import kotlinx.android.synthetic.main.fragment_detail_product.*
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -43,8 +46,13 @@ class DetailSoftwareFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+
+
         args = arguments?.let { DetailSoftwareFragmentArgs.fromBundle(it) }
         id = args?.software?.id
+
+        println("$id")
         close_image.setOnClickListener {
             it.findNavController().popBackStack()
         }
@@ -96,12 +104,11 @@ class DetailSoftwareFragment : Fragment() {
         }
 
         detailSoftwareViewModel.detailSoftwareLiveData.observe(viewLifecycleOwner) {
-            ("name : " + it.Software[0].name).also { name -> title.text = name }
-            ("$" + (it.Software[0].price)).also { p -> price.text = p }
-            ("description : " + it.Software[0].description).also { int -> introduction.text = int }
-            val sliderAdapter = SliderAdapterDetailSoftware(this, it.Images)
-            image.adapter = sliderAdapter
-            dots_indicator_detail.setViewPager2(image)
+            (it.name).also { name -> title.text = name }
+            (it.price).also { p -> price.text = p }
+            (it.description).also { int -> introduction.text = int }
+
+
         }
         detailSoftwareViewModel.progressbarLiveData.observe(viewLifecycleOwner) {
             progress(it)
@@ -109,6 +116,10 @@ class DetailSoftwareFragment : Fragment() {
         detailSoftwareViewModel.ratingSoftwareLiveData.observe(viewLifecycleOwner) {
             val adapterRatingSoftware: AdapterRatingSoftware by inject { parametersOf(it) }
             recyclerview_rating.adapter = adapterRatingSoftware
+        }
+        detailSoftwareViewModel.commentSoftwareLiveData.observe(viewLifecycleOwner) {
+            val adapterCommentSoftware: AdapterCommentSoftware by inject { parametersOf(it) }
+            recyclerview_comment.adapter = adapterCommentSoftware
         }
         technical_specifications.setOnClickListener {
             it.findNavController().navigate(
@@ -120,6 +131,8 @@ class DetailSoftwareFragment : Fragment() {
         recyclerview_rating.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
+        recyclerview_comment.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
 
@@ -128,4 +141,5 @@ class DetailSoftwareFragment : Fragment() {
         super.onResume()
         loginViewModel.checkLogin()
     }
+
 }

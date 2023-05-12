@@ -42,7 +42,7 @@ class AmazingAdapter(private val Software: List<Software>, private val imageLoad
                         HomeFragmentDirections.actionHomeFragmentToDetailSoftwareFragment(Software)
                     it.findNavController().navigate(directions)
                 }
-                //imageLoading.load(amazing_image, Software.image_url)
+                imageLoading.load(amazing_image, Software.image_url)
                 amazing_text.text = Software.name
                 price.text = Software.price
                 amount.text = Software.quantity.toString()
