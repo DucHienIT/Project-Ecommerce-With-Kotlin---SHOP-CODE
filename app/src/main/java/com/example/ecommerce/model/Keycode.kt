@@ -4,8 +4,9 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Cart(
+data class Keycode(
     val id: Int,
-    val cartItem: CartItem,
-    val user: Int
+    val code: String,
+    val software: Software,
+    val isUsed: Boolean
 ): Parcelable

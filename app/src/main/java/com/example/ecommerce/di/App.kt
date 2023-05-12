@@ -54,10 +54,15 @@ class App : Application() {
             factory<AddFavoriteRepository> { AddFavoriteImpl(RemoteAddFavoriteDataSource(get())) }
             factory { (favoriteList: List<FavoriteList>) ->
                 AdapterListFavorite(
-                    favoriteList,
-                    get()
+                    favoriteList
                 )
             }
+            factory { (listOrder: List<Order>) ->
+                AdapterListOrder(
+                    listOrder
+                )
+            }
+
             factory<PropertySoftwareRepository> {
                 PropertySoftwareImpl(
                     RemotePropertySoftwareDataSource(
@@ -65,7 +70,16 @@ class App : Application() {
                     )
                 )
             }
-            factory<FavoriteListRepository> { FavoriteListImpl(RemoteFavoriteListDataSource(get())) }
+            factory<FavoriteListRepository> {
+                FavoriteListImpl(
+                    RemoteFavoriteListDataSource(
+                        get()))
+            }
+            factory<ListOrderRepository> {
+                ListOrderImpl(
+                    RemoteListOrderDataSource(
+                        get()))
+            }
             factory<RatingSoftwareRepository> {
                 RatingSoftwareRepositoryImpl(
                     RemoteRatingSoftwareDataSource(get())
@@ -137,6 +151,9 @@ class App : Application() {
 
             viewModel {
                 FavoriteListViewModel(get())
+            }
+            viewModel {
+                ListOrderViewModel(get())
             }
             viewModel { (id: Int) ->
                 CategoryDetailViewModel(get(), id)

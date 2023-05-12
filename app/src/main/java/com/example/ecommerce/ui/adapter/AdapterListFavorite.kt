@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.item_favorite.view.*
 
 class AdapterListFavorite(
     private val favoriteList: List<FavoriteList>,
-    private val imageLoading: ImageLoading
 ) :
     RecyclerView.Adapter<AdapterListFavorite.ListFavoriteViewHolder>() {
     override fun onCreateViewHolder(
@@ -35,7 +34,6 @@ class AdapterListFavorite(
         position: Int
     ) {
         val list = favoriteList[position]
-        holder.bind(list, imageLoading)
     }
 
     override fun getItemCount(): Int {
@@ -48,9 +46,9 @@ class AdapterListFavorite(
                 /*
                 you must replace your ip address
                  */
-                //imageLoading.load(imageView, "http://192.168.8.157:8000${favoriteList.Software.image_url}")
+                //imageLoading.load(imageView, "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.simplilearn.com%2Fimage-processing-article&psig=AOvVaw2nosyppoqoQxAXfAmxduEI&ust=1683992833232000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCID0rKGQ8P4CFQAAAAAdAAAAABAE")
                 //Log.i("TAG", "http://192.168.8.157:8000${favoriteList.Software.image_url}")
-                text_title.text = favoriteList.software.name
+                text_title.text = "favoriteList.software.name"
                 setOnClickListener {
                     findNavController().navigate(
                         FavoriteFragmentDirections.actionFavoriteFragmentToDetailSoftwareFragment2(

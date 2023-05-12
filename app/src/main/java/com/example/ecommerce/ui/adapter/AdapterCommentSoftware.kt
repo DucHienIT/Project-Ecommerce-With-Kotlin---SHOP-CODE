@@ -13,8 +13,6 @@ import kotlinx.android.synthetic.main.item_rating.view.title
 
 class AdapterCommentSoftware(val comment: List<Comment>) :
     RecyclerView.Adapter<AdapterCommentSoftware.CommentSoftwareViewHolder>() {
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentSoftwareViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_comment, parent, false)
@@ -25,19 +23,15 @@ class AdapterCommentSoftware(val comment: List<Comment>) :
         val comment = comment[position]
         holder.bind(comment)
     }
-
     override fun getItemCount(): Int = comment.size
-
 
     class CommentSoftwareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(comment: Comment) {
             itemView.apply {
                 username.text=comment.user
                 title.text = comment.text
-                creat_at.text = "now"
+                creat_at.text = comment.created_at.take(10)
             }
-
         }
-
     }
 }

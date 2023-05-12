@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.item_rating.view.*
 class AdapterRatingSoftware(val rating: List<Rating>) :
     RecyclerView.Adapter<AdapterRatingSoftware.RatingSoftwareViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RatingSoftwareViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_rating, parent, false)
@@ -24,7 +23,6 @@ class AdapterRatingSoftware(val rating: List<Rating>) :
     }
 
     override fun getItemCount(): Int = rating.size
-
 
     class RatingSoftwareViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(rating: Rating) {

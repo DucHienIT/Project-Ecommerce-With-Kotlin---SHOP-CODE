@@ -17,6 +17,11 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
+        android:id="@+id/listOrderFragment"
+        android:name="com.example.ecommerce.ui.fragment.order.ListOrderFragment"
+        android:label="fragment_list_order"
+        tools:layout="@layout/fragment_list_order" />
+    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.ecommerce.ui.fragment.account.ProfileFragment"
         android:label="ProfileFragment" />
@@ -29,6 +34,8 @@
             android:id="@+id/action_favoriteFragment_to_detailSoftwareFragment2"
             app:destination="@id/detailSoftwareFragment2" />
     </fragment>
+
+
     <fragment
         android:id="@+id/detailSoftwareFragment2"
         android:name="com.example.ecommerce.ui.fragment.detail.DetailSoftwareFragment"

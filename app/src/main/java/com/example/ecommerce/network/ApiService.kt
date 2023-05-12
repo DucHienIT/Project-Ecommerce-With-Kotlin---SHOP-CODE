@@ -30,6 +30,8 @@ interface ApiService {
     @GET("/divine/comments/{id}/")
     fun commentSoftware(@Path("id") id: Int): Single<List<Comment>>
 
+
+
     // Lấy danh sách Property của sản phẩm
     @GET("home/property/{id}/")
     fun propertySoftware(@Path("id") id: Int): Single<List<Property>>
@@ -42,6 +44,8 @@ interface ApiService {
     @GET("home/price/")
     fun priceSoftware(@Query("id") id: Int): Single<List<Price>>
 
+    @GET("divine/keyCode/")
+    fun keyCode(@Query("id") id: Int): Single<Keycode>
     // Lấy danh sách sản phẩm so sánh
     @GET("home/comparison/{id}/")
     fun comparisonSoftware(@Path("id") id: Int): Single<List<Software>>
@@ -88,12 +92,24 @@ interface ApiService {
         @Path("count") count: Int,
         @Path("price") price: Int,
     ): Single<List<AddCart>>
-}
 
+    @POST("/divine/order/")
+    fun order(
+        @Header("Authorization") access_token: String
+    ): Single<Order>
+
+    @GET("/divine/orders/{id}/")
+    fun orderDetail(@Path("id") id: Int): Single<Order>
+
+    @GET("/divine/order/list/")
+    fun listOrder(
+        @Header("Authorization") access_token: String
+    ): Single<List<Order>>
+}
 
 fun client(): ApiService {
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://android-api-git-crt-20110233-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/")
+        .baseUrl("http://3.27.16.111/")
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
