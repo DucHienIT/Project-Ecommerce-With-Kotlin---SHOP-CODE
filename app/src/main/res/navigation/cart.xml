@@ -4,9 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cart"
     app:startDestination="@id/cartFragment">
+
+
+
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.ecommerce.ui.fragment.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_detailCartFragment"
+            app:destination="@id/cartDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartDetailFragment"
+        android:name="com.example.ecommerce.ui.fragment.cart.CartDetailFragment"
+        android:label="fragment_cart_detail"
+        tools:layout="@layout/fragment_cart_detail">
+        <argument
+            android:name="cart"
+            app:argType="com.example.ecommerce.model.CartItem" />
+    </fragment>
+
 </navigation>
