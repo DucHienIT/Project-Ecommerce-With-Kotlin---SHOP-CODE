@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ecommerce.R
 import com.example.ecommerce.utils.Fragment
 import com.example.ecommerce.viewmodel.LoginViewModel
+import kotlinx.android.synthetic.main.fragment_detail_user.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment() {
         address_image.setOnClickListener {
             findNavController().navigate(R.id.listOrderFragment)
         }
+
     }
 
 }

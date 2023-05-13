@@ -46,8 +46,6 @@ class DetailSoftwareFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-
 
         args = arguments?.let { DetailSoftwareFragmentArgs.fromBundle(it) }
         id = args?.software?.id

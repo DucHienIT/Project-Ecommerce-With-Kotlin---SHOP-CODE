@@ -49,6 +49,14 @@ class DetailUserFragment : Fragment() {
             (it.email).also { email -> edit_email.text = email }
             (it.username).also { int -> edit_username.text = int }
         }
+        swipe_refresh_layout.setOnRefreshListener {
+            // Gọi lại API
+            println("Tải lại trang")
+
+            // Tắt sự kiện refresh
+            swipe_refresh_layout.isRefreshing = false
+        }
+
     }
 
 
