@@ -58,6 +58,7 @@ class App : Application() {
             factory { (property: List<Property>) -> PropertySoftwareAdapter(property) }
             factory { (rating: List<Rating>) -> AdapterRatingSoftware(rating) }
             factory { (comment: List<Comment>) -> AdapterCommentSoftware(comment) }
+            factory { (cart: List<CartItem>) -> CartListAdapter(cart) }
             factory<AmazingRepository> { AmazingRepositoryImpl(RemoteAmazingDataSource(get())) }
             factory<DetailSoftwareRepository> {
                 DetailSoftwareRepositorylmpl(
@@ -173,7 +174,15 @@ class App : Application() {
             viewModel { (id: Int) ->
                 PriceSoftwareViewModel(get(), id)
             }
-
+            viewModel {
+                SubCartViewModel(get())
+            }
+            viewModel {
+                AddCartViewModel(get())
+            }
+            viewModel {
+                CartViewModel(get())
+            }
             viewModel { (id: Int) ->
                 ComparisonListViewModel(get(), id)
             }
