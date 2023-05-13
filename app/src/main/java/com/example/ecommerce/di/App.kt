@@ -58,6 +58,14 @@ class App : Application() {
                     )
                 )
             }
+            factory<DetailUserRepository> {
+                DetailUserImpl(
+                    RemoteDetailUserDataSource(
+                        get()
+                    )
+                )
+            }
+
 
             factory<AddFavoriteRepository> { AddFavoriteImpl(RemoteAddFavoriteDataSource(get())) }
             factory { (favoriteList: List<FavoriteList>) ->
@@ -173,6 +181,9 @@ class App : Application() {
             }
             viewModel { (id: Int) ->
                 CategoryDetailViewModel(get(), id)
+            }
+            viewModel {
+                DetailUserViewModel(get())
             }
 
 

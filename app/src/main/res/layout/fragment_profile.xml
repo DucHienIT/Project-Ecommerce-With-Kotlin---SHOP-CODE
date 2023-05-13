@@ -25,12 +25,12 @@
 
         <ImageView
             android:id="@+id/favorite_image"
-            android:layout_width="wrap_content"
+            android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_round_favorite_border_24"
+            android:src="@drawable/profile"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text" />
 
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/favorite_list"
+            android:text="Profile"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/favorite_image"
@@ -92,12 +92,12 @@
 
         <ImageView
             android:id="@+id/address_image"
-            android:layout_width="wrap_content"
+            android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_outline_home_24"
+            android:src="@drawable/listorder"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view2" />
 
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/address_list"
+            android:text="List Order"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/address_image"

@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel.checkLogin()
         favorite_list.setOnClickListener {
-            findNavController().navigate(R.id.favoriteFragment)
+            findNavController().navigate(R.id.detailUserFragment)
         }
 
         address_image.setOnClickListener {

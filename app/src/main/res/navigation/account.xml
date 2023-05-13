@@ -44,6 +44,12 @@
         android:id="@+id/profileFragment"
         android:name="com.example.ecommerce.ui.fragment.account.ProfileFragment"
         android:label="ProfileFragment" />
+
+    <fragment
+        android:id="@+id/detailUserFragment"
+        android:name="com.example.ecommerce.ui.fragment.detail.DetailUserFragment"
+        android:label="DetailUserFragment" />
+
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.ecommerce.ui.fragment.account.FavoriteFragment"

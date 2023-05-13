@@ -108,6 +108,11 @@ interface ApiService {
     fun listOrder(
         @Header("Authorization") access_token: String
     ): Single<List<Order>>
+
+    @GET("/account/dj-rest-auth/user/")
+    fun detailUser(
+        @Header("Authorization") access_token: String
+    ): Single<User>
 }
 
 fun client(): ApiService {
