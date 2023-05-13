@@ -84,14 +84,26 @@ interface ApiService {
     @GET("/divine/software/category/{id}/")
     fun categoryDetail(@Path("id") id: Int): Single<List<Software>>
 
-    // Thêm sản phẩm vào giỏ hàng
-    @POST("cart/add/{id}/{count}/{price}/")
-    fun addCart(
-        @Header("Authorization") access_token: String,
-        @Path("id") id: Int,
-        @Path("count") count: Int,
-        @Path("price") price: Int,
+    // Danh sách giỏ hàng
+    @GET("/divine/cart/")
+    fun cart(
+        @Header("Authorization") access_token: String
     ): Single<List<CartItem>>
+
+
+    // Thêm sản phẩm vào giỏ hàng( Cần bổ xung )
+    @POST("/divine/cart/add/{id}/")
+    fun addCart(
+        @Path("id") id: Int,
+        @Header("Authorization") access_token: String
+    ): Single<AddCartMessage>
+
+    // Xóa sản phẩm vào giỏ hàng( Cần bổ xung )
+    @POST("/divine/cart/sub/{id}/")
+    fun subCart(
+        @Path("id") id: Int,
+        @Header("Authorization") access_token: String
+    ): Single<AddCartMessage>
 
     @POST("/divine/order/")
     fun order(
