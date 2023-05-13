@@ -46,7 +46,11 @@ class App : Application() {
                     RemoteAddCartDataSource(get())
                 )
             }
-
+            factory<SubCartRepository> {
+                SubCartImpl(
+                    RemoteSubCartDataSource(get())
+                )
+            }
             factory { (category: List<Category>) -> CategoryAdapter(category, get()) }
             factory { (software: List<Software>) -> AdapterCategoryDetail(software, get()) }
             factory { (category: List<Category>) -> CategoryListAdapter(category, get()) }
