@@ -91,7 +91,7 @@ interface ApiService {
         @Path("id") id: Int,
         @Path("count") count: Int,
         @Path("price") price: Int,
-    ): Single<List<AddCart>>
+    ): Single<List<CartItem>>
 
     @POST("/divine/order/")
     fun order(
