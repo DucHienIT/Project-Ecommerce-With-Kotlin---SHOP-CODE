@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Keycode(
     val id: Int,
-    val code: String,
+    val key_code: String,
     val software: Software,
-    val isUsed: Boolean
+    val is_used: Boolean
 ): Parcelable

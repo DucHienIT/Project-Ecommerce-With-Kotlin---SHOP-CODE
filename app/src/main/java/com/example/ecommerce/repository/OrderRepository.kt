@@ -6,5 +6,4 @@ import io.reactivex.rxjava3.core.Single
 
 interface OrderRepository {
     fun order(access_token:String):Single<Order>
-    fun orderDetail(id: Int):Single<Order>
 }

@@ -99,7 +99,10 @@ interface ApiService {
     ): Single<Order>
 
     @GET("/divine/orders/{id}/")
-    fun orderDetail(@Path("id") id: Int): Single<Order>
+    fun orderDetail(
+        @Path("id") id: Int,
+        @Header("Authorization") access_token: String
+    ): Single<OrderDetail>
 
     @GET("/divine/order/list/")
     fun listOrder(

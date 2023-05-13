@@ -11,7 +11,9 @@ import com.example.ecommerce.model.Category
 import com.example.ecommerce.model.FavoriteList
 import com.example.ecommerce.model.Order
 import com.example.ecommerce.ui.fragment.account.FavoriteFragmentDirections
+import com.example.ecommerce.ui.fragment.category.CategoryFragmentDirections
 import com.example.ecommerce.ui.fragment.home.ImageLoading
+import com.example.ecommerce.ui.fragment.order.ListOrderFragmentDirections
 import kotlinx.android.synthetic.main.item_category.view.*
 import kotlinx.android.synthetic.main.item_favorite.view.*
 import kotlinx.android.synthetic.main.item_order.view.*
@@ -31,6 +33,7 @@ class AdapterListOrder(private val listOrder: List<Order>) :
         println(order.order_date)
         holder.bind(order)
 
+
     }
 
     override fun getItemCount(): Int = listOrder.size
@@ -41,6 +44,11 @@ class AdapterListOrder(private val listOrder: List<Order>) :
             itemView.apply {
                 creat_at.text = order.order_date
                 status.text = order.status
+                setOnClickListener {
+                    findNavController().navigate(
+                        ListOrderFragmentDirections.actionListOrderFragmentToOrderDetailFragment(order)
+                    )
+                }
             }
         }
     }

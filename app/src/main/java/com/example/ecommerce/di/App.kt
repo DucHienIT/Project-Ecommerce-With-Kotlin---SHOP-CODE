@@ -51,6 +51,14 @@ class App : Application() {
                     )
                 )
             }
+            factory<OrderDetailRepository> {
+                OrderDetailRepositorylmpl(
+                    RemoteOrderDetailDataSource(
+                        get()
+                    )
+                )
+            }
+
             factory<AddFavoriteRepository> { AddFavoriteImpl(RemoteAddFavoriteDataSource(get())) }
             factory { (favoriteList: List<FavoriteList>) ->
                 AdapterListFavorite(
@@ -60,6 +68,11 @@ class App : Application() {
             factory { (listOrder: List<Order>) ->
                 AdapterListOrder(
                     listOrder
+                )
+            }
+            factory { (listDataOrder: List<Data>) ->
+                AdapterDataOrder(
+                    listDataOrder
                 )
             }
 
@@ -127,6 +140,9 @@ class App : Application() {
             }
             viewModel { (id: Int) ->
                 DetailSoftwareViewModel(get(), get(), get(), id)
+            }
+            viewModel { (id: Int) ->
+                OrderDetailViewModel(get(), id)
             }
             viewModel { (id: Int) ->
                 PropertySoftwareViewModel(get(), id)

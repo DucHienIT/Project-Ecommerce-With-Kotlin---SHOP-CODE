@@ -20,7 +20,26 @@
         android:id="@+id/listOrderFragment"
         android:name="com.example.ecommerce.ui.fragment.order.ListOrderFragment"
         android:label="fragment_list_order"
-        tools:layout="@layout/fragment_list_order" />
+        tools:layout="@layout/fragment_list_order">
+        <argument
+            android:name="order"
+            app:argType="com.example.ecommerce.model.Order" />
+        <action
+            android:id="@+id/action_listOrderFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.example.ecommerce.ui.fragment.order.OrderDetailFragment"
+        android:label="fragment_order_Detail"
+        tools:layout="@layout/fragment_detail_order" >
+        <argument
+            android:name="order"
+            app:argType="com.example.ecommerce.model.Order" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.ecommerce.ui.fragment.account.ProfileFragment"

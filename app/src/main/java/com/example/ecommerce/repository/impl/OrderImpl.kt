@@ -10,6 +10,4 @@ class OrderImpl(private val favoriteListDataSource: OrderDataSource) :
     override fun order(access_token: String): Single<Order> =
         favoriteListDataSource.order(access_token)
 
-    override fun orderDetail(id: Int): Single<Order> =
-        favoriteListDataSource.orderDetail(id)
 }

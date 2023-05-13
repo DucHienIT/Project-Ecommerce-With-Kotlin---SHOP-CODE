@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerce.R
 import com.example.ecommerce.ui.adapter.AdapterListOrder
+import com.example.ecommerce.ui.fragment.category.CategoryListFragmentArgs
 import com.example.ecommerce.utils.Fragment
 import com.example.ecommerce.utils.TokenHolder
 import com.example.ecommerce.viewmodel.ListOrderViewModel
@@ -21,6 +22,8 @@ class ListOrderFragment : Fragment() {
 
     private val listOrderViewModel: ListOrderViewModel by viewModel()
 
+    /*var args: ListOrderFragmentArgs? = null
+    var id: Int? = null*/
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,9 +34,15 @@ class ListOrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         listOrderViewModel.listOrder(
             "Bearer ${TokenHolder.access_token}"
         )
+        // Lấy dữ liệu truyền vào qua Navigation
+        //args = arguments?.let { ListOrderFragmentArgs.fromBundle(it) }
+        //id = args?.order?.id
+
 
         // Quan sát sự thay đổi của danh sách các danh mục sản phẩm và hiển thị lên giao diện.
         listOrderViewModel.listOrderLiveData.observe(viewLifecycleOwner) { orders ->

@@ -9,7 +9,4 @@ import io.reactivex.rxjava3.core.Single
 class RemoteOrderDataSource(val apiService: ApiService) : OrderDataSource {
     override fun order(access_token: String): Single<Order> =
         apiService.order(access_token)
-
-    override fun orderDetail(id: Int): Single<Order>  =
-        apiService.orderDetail(id)
 }

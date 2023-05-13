@@ -3,11 +3,9 @@ package com.example.ecommerce.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-
-@Parcelize
-data class Order(
+data class OrderDetail(
+    val status: String,
     val id: Int,
-    val user: String,
-    val order_date: String,
-    val status: String
-): Parcelable
+    val message: String,
+    val data: List<Data>
+)

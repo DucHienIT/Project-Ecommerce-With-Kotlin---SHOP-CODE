@@ -31,7 +31,7 @@ class AdapterKeyCode(val keycode: List<Keycode>) :
         fun bind(keycode: Keycode) {
             itemView.apply {
                 software_name.text = keycode.software.name
-                code.text = keycode.code
+                code.text = keycode.key_code
             }
         }
     }
