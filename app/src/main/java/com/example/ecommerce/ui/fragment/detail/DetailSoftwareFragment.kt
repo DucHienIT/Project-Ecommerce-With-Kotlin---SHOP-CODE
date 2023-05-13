@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -17,6 +18,7 @@ import com.example.ecommerce.ui.adapter.AdapterRatingSoftware
 import com.example.ecommerce.ui.adapter.SliderAdapterDetailSoftware
 import com.example.ecommerce.utils.Fragment
 import com.example.ecommerce.utils.TokenHolder
+import com.example.ecommerce.viewmodel.AddCartViewModel
 import com.example.ecommerce.viewmodel.AddFavoriteViewModel
 import com.example.ecommerce.viewmodel.DetailSoftwareViewModel
 import com.example.ecommerce.viewmodel.LoginViewModel
@@ -33,6 +35,7 @@ class DetailSoftwareFragment : Fragment() {
     private val detailSoftwareViewModel: DetailSoftwareViewModel by viewModel { parametersOf(id) }
     private val loginViewModel: LoginViewModel by viewModel()
     private val addFavoriteViewModel: AddFavoriteViewModel by viewModel()
+    private val addCartViewModel: AddCartViewModel by viewModel()
     private var args: DetailSoftwareFragmentArgs? = null
     var id: Int? = null
     val Software: String? = null
@@ -72,6 +75,18 @@ class DetailSoftwareFragment : Fragment() {
                         "Bearer ${TokenHolder.access_token}"
                     )
                 }
+            }
+        }
+        add_cart.setOnClickListener{
+            if (loginViewModel.checkLoginStatus.value == false) {
+                it.findNavController().navigate(R.id.action_detailSoftwareFragment_to_loginFragment2)
+            } else {
+                id?.let { it1 ->
+                    addCartViewModel.addCart(
+                        it1,"Bearer ${TokenHolder.access_token}")
+                }
+                Toast.makeText(context,"Add successfully", Toast.LENGTH_SHORT).show()
+
             }
         }
         addFavoriteViewModel.addFavoriteLiveData.observe(viewLifecycleOwner) {
