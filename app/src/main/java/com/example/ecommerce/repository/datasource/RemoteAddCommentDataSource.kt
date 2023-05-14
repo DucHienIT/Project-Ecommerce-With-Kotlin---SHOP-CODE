@@ -7,7 +7,7 @@ import com.example.ecommerce.network.ApiService
 import io.reactivex.rxjava3.core.Single
 
 class RemoteAddCommentDataSource(private val apiService: ApiService) : AddCommentDataSource {
-    override fun addCart(
+    override fun addComment(
         id:Int,
         access_token: String,
         text:String
