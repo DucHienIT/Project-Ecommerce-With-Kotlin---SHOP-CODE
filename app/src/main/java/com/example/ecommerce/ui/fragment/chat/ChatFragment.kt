@@ -195,7 +195,10 @@ class ChatFragment : Fragment() {
     }
 
     private fun sentRequest() {
-        val userInput: String = et_text.text.toString()
+        val constraint: String = "Hãy trả lời bằng tiếng việt, trả lời với vai trò là một nhân viên tư vấn của một shop bán code phần mềm bản quyền, và bạn tên là Linh nhé: \n"
+        val userInput: String =constraint + et_text.text.toString()
+
+        println(userInput)
         if (!TextUtils.isEmpty(userInput)) {
             userPrompt(userInput, 2)
             et_text.setText("")

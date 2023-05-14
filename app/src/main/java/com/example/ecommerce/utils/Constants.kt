@@ -8,7 +8,7 @@ package com.example.ecommerce.utils
 class Constants {
     companion object {
         // API Key for OpenAI API
-        const val API_KEY: String = "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"
+        const val API_KEY: String = "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"
 
         // Base URL for OpenAI API
         const val BASE_URL = "https://api.openai.com/v1/chat/completions"
