@@ -5,9 +5,9 @@ import com.example.ecommerce.repository.OrderRepository
 import com.example.ecommerce.repository.datasource.OrderDataSource
 import io.reactivex.rxjava3.core.Single
 
-class OrderImpl(private val favoriteListDataSource: OrderDataSource) :
+class OrderImpl(private val orderDataSource: OrderDataSource) :
     OrderRepository {
     override fun order(access_token: String): Single<Order> =
-        favoriteListDataSource.order(access_token)
+        orderDataSource.order(access_token)
 
 }

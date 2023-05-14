@@ -39,7 +39,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_order"
         android:layout_width="149dp"
         android:layout_height="50dp"
         android:text="Đặt hàng"

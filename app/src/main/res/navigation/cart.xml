@@ -5,8 +5,6 @@
     android:id="@+id/cart"
     app:startDestination="@id/cartFragment">
 
-
-
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.ecommerce.ui.fragment.cart.CartFragment"
@@ -15,6 +13,9 @@
         <action
             android:id="@+id/action_cartFragment_to_detailCartFragment"
             app:destination="@id/cartDetailFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
 
     <fragment
@@ -24,6 +25,16 @@
         tools:layout="@layout/fragment_cart_detail">
         <argument
             android:name="cart"
+            app:argType="com.example.ecommerce.model.CartItem" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.ecommerce.ui.fragment.order.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment">
+        <argument
+            android:name="cartItem"
             app:argType="com.example.ecommerce.model.CartItem" />
     </fragment>
 

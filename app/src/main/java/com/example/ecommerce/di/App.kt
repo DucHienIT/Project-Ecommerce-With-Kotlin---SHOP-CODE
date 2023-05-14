@@ -46,6 +46,11 @@ class App : Application() {
                     RemoteAddCartDataSource(get())
                 )
             }
+            factory<OrderRepository> {
+                OrderImpl(
+                    RemoteOrderDataSource(get())
+                )
+            }
             factory<SubCartRepository> {
                 SubCartImpl(
                     RemoteSubCartDataSource(get())
@@ -181,7 +186,7 @@ class App : Application() {
                 AddCartViewModel(get())
             }
             viewModel {
-                CartViewModel(get())
+                CartViewModel(get(), get())
             }
             viewModel { (id: Int) ->
                 ComparisonListViewModel(get(), id)

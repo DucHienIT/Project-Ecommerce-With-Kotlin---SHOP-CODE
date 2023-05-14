@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerce.R
 import com.example.ecommerce.ui.adapter.AdapterListFavorite
@@ -24,6 +25,7 @@ import org.koin.core.parameter.parametersOf
 
 class CartFragment : Fragment() {
     private val cartViewModel: CartViewModel by viewModel()
+
     var id: Int? = null
 
     override fun onCreateView(
@@ -41,9 +43,22 @@ class CartFragment : Fragment() {
         if (TokenHolder.access_token!= null) {
             cartViewModel.cartLiveData.observe(viewLifecycleOwner) {
                 val cartAdapter: CartListAdapter by inject { parametersOf(it) }
-
                 cart.adapter = cartAdapter
                 cart.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            }
+
+            button_order.setOnClickListener{
+
+                //cartViewModel.cart()
+                try {
+                    //val directions = CartFragmentDirections.actionCartFragmentToPaymentFragment()
+                    findNavController().navigate(R.id.paymentFragment)
+                    //cartViewModel.orderCart()
+                } catch (exception: Exception) {
+                    println(exception.toString())
+                } finally {
+                    // mã được thực thi sau khi mã trong khối try hoặc catch thực thi xong
+                }
 
             }
         }
