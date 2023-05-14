@@ -97,7 +97,7 @@ class DetailSoftwareFragment : Fragment() {
             } else {
                 id?.let { it1 ->
                     addCommentViewModel.addComment(
-                        it1,"Bearer ${TokenHolder.access_token}",comment_text.toString())
+                        it1,"Bearer ${TokenHolder.access_token}",comment_text.text.toString())
                 }
                 Toast.makeText(context,"Comment successfully", Toast.LENGTH_SHORT).show()
 
