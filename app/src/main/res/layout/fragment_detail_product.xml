@@ -196,12 +196,20 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/club"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:padding="8dp"
                         android:textColor="@color/black" />
+
+                    <Button
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/btnAddComment"
+                        android:text="Add Comment"
+                        >
+                    </Button>
 
                 </LinearLayout>
 

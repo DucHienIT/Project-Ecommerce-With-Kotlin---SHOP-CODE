@@ -36,6 +36,11 @@ class App : Application() {
                     RemoteCategoryDataSource(get())
                 )
             }
+            factory<AddCommentRepository> {
+                AddCommentImpl(
+                    RemoteAddCommentDataSource(get())
+                )
+            }
             factory<CartRepository> {
                 CartImpl(
                     RemoteCartDataSource(get())
@@ -166,6 +171,9 @@ class App : Application() {
             single<SharedPreferences> { this@App.getSharedPreferences("user_token", MODE_PRIVATE) }
             viewModel {
                 HomeViewModel(get(), get(), get())
+            }
+            viewModel {
+                AddCommentViewModel(get())
             }
             viewModel { (id: Int) ->
                 DetailSoftwareViewModel(get(), get(), get(), id)
