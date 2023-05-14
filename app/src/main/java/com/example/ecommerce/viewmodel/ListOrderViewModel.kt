@@ -9,9 +9,7 @@ import com.example.ecommerce.utils.BaseViewModel
 import com.example.ecommerce.utils.Observer
 import com.example.ecommerce.utils.singleHelper
 
-class ListOrderViewModel(
-    private val listOrderRepository: ListOrderRepository
-) : BaseViewModel() {
+class ListOrderViewModel(private val listOrderRepository: ListOrderRepository) : BaseViewModel() {
     val listOrderLiveData = MutableLiveData<List<Order>>()
 
     /**

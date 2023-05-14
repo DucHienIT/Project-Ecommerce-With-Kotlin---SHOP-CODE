@@ -17,6 +17,7 @@ import java.math.BigDecimal
 class SubCartViewModel(private val subCartRepository: SubCartRepository, ) : BaseViewModel() {
     // đối tượng MutableLiveData để truyền dữ liệu giữa lớp ViewModel và View (Activity hoặc Fragment)
     val addCartLiveData = MutableLiveData<AddCartMessage>()
+
     // Phương thức để thêm sản phẩm vào danh sách yêu thích
     fun subCart(id: Int,access_token: String) {
         // Đặt giá trị của đối tượng progressbarLiveData là true để hiển thị tiến trình đang xử lý
@@ -31,8 +32,9 @@ class SubCartViewModel(private val subCartRepository: SubCartRepository, ) : Bas
             .subscribe(object : Observer<AddCartMessage>(compositeDisposable) {
                 override fun onSuccess(t: AddCartMessage) {
                     addCartLiveData.value = t!!
-                }
+                    // load lại api tại đây
 
+                }
             })
     }
 }

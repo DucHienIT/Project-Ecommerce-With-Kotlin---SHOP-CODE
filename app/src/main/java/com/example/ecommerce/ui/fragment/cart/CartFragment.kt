@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ecommerce.R
+import com.example.ecommerce.ui.adapter.AdapterListFavorite
 import com.example.ecommerce.ui.adapter.CartListAdapter
 import com.example.ecommerce.utils.Fragment
 import com.example.ecommerce.utils.TokenHolder
@@ -16,6 +17,7 @@ import com.example.ecommerce.viewmodel.CartViewModel
 import com.example.ecommerce.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.fragment_favorite.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -35,17 +37,16 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        cartViewModel.cart()
         if (TokenHolder.access_token!= null) {
             cartViewModel.cartLiveData.observe(viewLifecycleOwner) {
                 val cartAdapter: CartListAdapter by inject { parametersOf(it) }
 
                 cart.adapter = cartAdapter
                 cart.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
             }
-
-
         }
-
     }
 
 

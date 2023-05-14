@@ -67,6 +67,5 @@ class CategoryListFragment : Fragment() {
         // Đặt kiểu hiển thị danh sách là dạng dọc
         category_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
     }
 }

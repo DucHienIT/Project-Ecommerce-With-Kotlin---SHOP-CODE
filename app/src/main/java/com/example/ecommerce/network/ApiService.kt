@@ -74,6 +74,13 @@ interface ApiService {
         @Header("Authorization") access_token: String
     ): Single<AddFavorite>
 
+    @POST("/divine/comment/add/{id}/")
+    fun addComment(
+        @Path("id") id: Int,
+        @Header("Authorization") access_token: String,
+        @Field("text") text: String
+    ): Single<AddFavorite>
+
     // Lấy danh sách sản phẩm yêu thích
     @POST("account/listfavorite/")
     fun listFavorite(

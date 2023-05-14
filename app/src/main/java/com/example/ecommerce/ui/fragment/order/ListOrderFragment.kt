@@ -64,5 +64,4 @@ class ListOrderFragment : Fragment() {
         // Thiết lập layout cho danh sách các danh mục sản phẩm.
         listOrderFragment.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
-
 }

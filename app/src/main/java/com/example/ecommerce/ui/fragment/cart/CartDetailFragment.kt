@@ -61,6 +61,7 @@ class CartDetailFragment : Fragment() {
                 Toast.makeText(context,"Add successfully", Toast.LENGTH_SHORT).show()
 
             }
+
         }
 
         sub.setOnClickListener{

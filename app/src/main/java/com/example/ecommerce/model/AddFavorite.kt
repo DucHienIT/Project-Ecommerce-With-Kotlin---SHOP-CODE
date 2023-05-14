@@ -5,5 +5,5 @@ data class AddFavorite(
     val is_favorite: Boolean,
     val Software: Int,
     val user: Int,
-    val available: String,
+    val available: String
 )
