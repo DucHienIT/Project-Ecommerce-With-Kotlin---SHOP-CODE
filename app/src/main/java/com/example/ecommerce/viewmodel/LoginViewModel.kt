@@ -5,6 +5,7 @@ import com.example.ecommerce.model.Login
 import com.example.ecommerce.repository.LoginRepository
 import com.example.ecommerce.utils.BaseViewModel
 import com.example.ecommerce.utils.Observer
+import com.example.ecommerce.utils.TokenHolder
 import com.example.ecommerce.utils.singleHelper
 
 /**
@@ -54,6 +55,12 @@ class LoginViewModel(
      * Kiểm tra trạng thái đăng nhập
      */
     fun checkLogin() {
-        checkLoginStatus.value = loginRepository.checkLogin()
+        if(TokenHolder.access_token == null)
+        {
+            checkLoginStatus.value = false
+        }
+        else{
+            checkLoginStatus.value = true
+        }
     }
 }

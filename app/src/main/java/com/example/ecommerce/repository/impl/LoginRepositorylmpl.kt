@@ -16,11 +16,7 @@ class LoginRepositorylmpl(
             localLoginDataSource.accessToken(it.access_token, it.refresh_token)
         }
     }
-
     override fun checkLogin(): Boolean {
         return localLoginDataSource.checkLogin()
     }
-
-
-
 }
