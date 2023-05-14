@@ -58,7 +58,7 @@ class CartListAdapter(val cart: List<CartItem>) : RecyclerView.Adapter<CartListA
                 Picasso.get().load(cart.software.image_url).into(image);
                 count.text = cart.quantity.toString()
                 total2.text =
-                    (cart.software.price.toFloat() * cart.software.quantity.toInt()).toString()
+                    (cart.software.price.toFloat() * cart.quantity).toString()
 
 
             }
