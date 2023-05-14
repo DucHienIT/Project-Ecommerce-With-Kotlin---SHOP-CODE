@@ -58,6 +58,15 @@ interface ApiService {
         @Field("password") password: String
     ): Single<Login>
 
+    @FormUrlEncoded
+    @POST("divine/comment/add/{id}/")
+    fun addComment(
+        @Path("id") id: Int,
+        @Header("Authorization") access_token: String,
+        @Field("text") text: String,
+    ): Single<Comment>
+
+
     // Đăng ký
     @FormUrlEncoded
     @POST("account/dj-rest-auth/registration/")
@@ -72,13 +81,6 @@ interface ApiService {
     fun addFavorite(
         @Path("id") id: Int,
         @Header("Authorization") access_token: String
-    ): Single<AddFavorite>
-
-    @POST("/divine/comment/add/{id}/")
-    fun addComment(
-        @Path("id") id: Int,
-        @Header("Authorization") access_token: String,
-        @Field("text") text: String
     ): Single<AddFavorite>
 
     // Lấy danh sách sản phẩm yêu thích
