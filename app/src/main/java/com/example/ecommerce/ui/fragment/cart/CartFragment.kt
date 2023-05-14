@@ -52,7 +52,7 @@ class CartFragment : Fragment() {
                 //cartViewModel.cart()
                 try {
                     //val directions = CartFragmentDirections.actionCartFragmentToPaymentFragment()
-                    findNavController().navigate(R.id.paymentFragment)
+                    findNavController().navigate(R.id.chartFragment)
                     //cartViewModel.orderCart()
                 } catch (exception: Exception) {
                     println(exception.toString())

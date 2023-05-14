@@ -10,4 +10,12 @@
     <color name="dark_red">#D01127</color>
     <color name="light_black">#2B2929</color>
     <color name="yellow">#FFB300</color>
+
+    <!-- Colors -->
+    <color name="dark_grey">#121212</color>
+    <color name="white_10">#E4E4E4E4</color>
+    <color name="black_10">#80000000</color>
+
+
+    <color name="koamaru">#37306B</color>
 </resources>

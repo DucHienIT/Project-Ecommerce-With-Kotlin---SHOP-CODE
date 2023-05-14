@@ -3,7 +3,9 @@ package com.example.ecommerce.di
 import android.app.Application
 import android.content.SharedPreferences
 import com.example.ecommerce.model.*
+import com.example.ecommerce.network.OpenAIClient
 import com.example.ecommerce.network.client
+import com.example.ecommerce.network.client2
 import com.example.ecommerce.repository.*
 import com.example.ecommerce.repository.datasource.*
 import com.example.ecommerce.repository.impl.*
@@ -25,6 +27,10 @@ class App : Application() {
             single {
                 client()
             }
+            single {
+                client2()
+            }
+
             factory<SliderRepository> {
                 SliderRepositoryImpl(
                     RemoteSliderDataSource(get()),

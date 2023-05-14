@@ -137,4 +137,9 @@
     </fragment>
 
 
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.ecommerce.ui.fragment.chat.ChatFragment"
+        android:label="ChatFragment" />
+
 </navigation>
