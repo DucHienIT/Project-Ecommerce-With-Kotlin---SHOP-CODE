@@ -79,14 +79,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.viewpager2.widget.ViewPager2
+            <ImageView
                 android:id="@+id/image"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                 android:id="@+id/dots_indicator_detail"
                 android:layout_width="wrap_content"
