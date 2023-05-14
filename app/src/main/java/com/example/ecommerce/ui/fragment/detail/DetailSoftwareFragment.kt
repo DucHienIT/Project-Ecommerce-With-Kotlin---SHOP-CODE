@@ -18,10 +18,7 @@ import com.example.ecommerce.ui.adapter.AdapterRatingSoftware
 import com.example.ecommerce.ui.adapter.SliderAdapterDetailSoftware
 import com.example.ecommerce.utils.Fragment
 import com.example.ecommerce.utils.TokenHolder
-import com.example.ecommerce.viewmodel.AddCartViewModel
-import com.example.ecommerce.viewmodel.AddFavoriteViewModel
-import com.example.ecommerce.viewmodel.DetailSoftwareViewModel
-import com.example.ecommerce.viewmodel.LoginViewModel
+import com.example.ecommerce.viewmodel.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cart_item.view.*
 
@@ -36,6 +33,7 @@ import www.sanju.motiontoast.MotionToast
 class DetailSoftwareFragment : Fragment() {
     private val detailSoftwareViewModel: DetailSoftwareViewModel by viewModel { parametersOf(id) }
     private val loginViewModel: LoginViewModel by viewModel()
+    private val addCommentViewModel: AddCommentViewModel by viewModel()
     private val addFavoriteViewModel: AddFavoriteViewModel by viewModel()
     private val addCartViewModel: AddCartViewModel by viewModel()
     private var args: DetailSoftwareFragmentArgs? = null
@@ -93,6 +91,18 @@ class DetailSoftwareFragment : Fragment() {
 
             }
         }
+        btnAddComment.setOnClickListener{
+            if (loginViewModel.checkLoginStatus.value == false) {
+                it.findNavController().navigate(R.id.action_detailSoftwareFragment_to_loginFragment2)
+            } else {
+                id?.let { it1 ->
+                    addCommentViewModel.addComment(
+                        it1,"Bearer ${TokenHolder.access_token}",comment_text.toString())
+                }
+                Toast.makeText(context,"Comment successfully", Toast.LENGTH_SHORT).show()
+
+            }
+        }
         addFavoriteViewModel.addFavoriteLiveData.observe(viewLifecycleOwner) {
             if (it.is_favorite) {
                 MotionToast.createToast(
@@ -119,6 +129,7 @@ class DetailSoftwareFragment : Fragment() {
                 favorite_image.setImageResource(R.drawable.ic_round_favorite_24)
             }
         }
+
 
         detailSoftwareViewModel.detailSoftwareLiveData.observe(viewLifecycleOwner) {
             (it.name).also { name -> title.text = name }
