@@ -1,3 +1,22 @@
+package com.example.ecommerce.di
+
+import android.app.Application
+import android.content.SharedPreferences
+import com.example.ecommerce.model.*
+import com.example.ecommerce.network.client
+import com.example.ecommerce.repository.*
+import com.example.ecommerce.repository.datasource.*
+import com.example.ecommerce.repository.impl.*
+import com.example.ecommerce.ui.adapter.*
+import com.example.ecommerce.ui.fragment.home.ImageLoading
+import com.example.ecommerce.viewmodel.*
+import com.facebook.drawee.backends.pipeline.Fresco
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
+
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Fresco.initialize(this)
@@ -148,6 +167,9 @@
             viewModel {
                 HomeViewModel(get(), get(), get())
             }
+            viewModel {
+                AddCommentViewModel(get())
+            }
             viewModel { (id: Int) ->
                 DetailSoftwareViewModel(get(), get(), get(), id)
             }
@@ -204,3 +226,4 @@
         }
 
     }
+}
