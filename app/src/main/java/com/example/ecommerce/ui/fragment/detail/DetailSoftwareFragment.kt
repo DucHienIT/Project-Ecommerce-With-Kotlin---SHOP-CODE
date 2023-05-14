@@ -22,6 +22,8 @@ import com.example.ecommerce.viewmodel.AddCartViewModel
 import com.example.ecommerce.viewmodel.AddFavoriteViewModel
 import com.example.ecommerce.viewmodel.DetailSoftwareViewModel
 import com.example.ecommerce.viewmodel.LoginViewModel
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.cart_item.view.*
 
 import kotlinx.android.synthetic.main.fragment_detail_product.*
 import kotlinx.coroutines.launch
@@ -65,6 +67,8 @@ class DetailSoftwareFragment : Fragment() {
             )
 
         }
+        Picasso.get().load(args?.software?.image_url).into(image);
+
         favorite_image.setOnClickListener {
             if (loginViewModel.checkLoginStatus.value == false) {
                 it.findNavController().navigate(R.id.action_detailSoftwareFragment_to_loginFragment2)
