@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 
 // Interface AddCartDataSource mô tả các phương thức cần thiết để thực hiện hoạt động thêm mặt hàng vào giỏ hàng
 interface AddCommentDataSource {
-    fun addCart(
+    fun addComment(
         id:Int,
         access_token: String,
         text:String
